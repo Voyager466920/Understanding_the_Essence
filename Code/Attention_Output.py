@@ -4,29 +4,21 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 
-# -----------------------------
-# 1. 입력 토큰 및 임베딩 준비
-# -----------------------------
 tokens = ["Aero", "dynamics", "are", "for", "people", "who", "can", "'t", "build", "engine"]
 input_tokens = tokens[:-1]  # 입력: 9개 토큰
 target_token = tokens[-1]  # 예측 대상: "engine"
 
-# 간단한 vocab (입력 토큰만 사용)
 vocab = {tok: i + 1 for i, tok in enumerate(input_tokens)}
 vocab_size = len(vocab) + 1
 
-# 토큰 -> 인덱스 텐서 (배치 크기 1, 시퀀스 길이 9)
 input_indices = torch.tensor([[vocab[tok] for tok in input_tokens]])
 
-# -----------------------------
-# 2. 768차원 임베딩 및 선형 변환 (Q, K, V)
-# -----------------------------
+
 embedding_dim = 768
 embedding_layer = nn.Embedding(num_embeddings=vocab_size, embedding_dim=embedding_dim)
 X = embedding_layer(input_indices)  # shape: (1, 9, 768)
 X = X.squeeze(0)  # (9, 768)
 
-# Q, K, V를 위한 선형 레이어 (각각 768->768)
 W_Q = nn.Linear(embedding_dim, embedding_dim, bias=False)
 W_K = nn.Linear(embedding_dim, embedding_dim, bias=False)
 W_V = nn.Linear(embedding_dim, embedding_dim, bias=False)
@@ -35,9 +27,7 @@ Q = W_Q(X)  # (9, 768)
 K = W_K(X)  # (9, 768)
 V = W_V(X)  # (9, 768)
 
-# -----------------------------
-# 3. 멀티헤드 분할: 768 = 12 * 64
-# -----------------------------
+
 num_heads = 12
 head_dim = embedding_dim // num_heads  # 64
 
@@ -68,14 +58,9 @@ scaled_scores = scores / math.sqrt(head_dim)  # head_dim = 64, sqrt(64)=8
 # 소프트맥스 적용: 각 토큰이 다른 토큰에 대해 주의를 기울이는 정도 (9, 9)
 attn_weights = torch.softmax(scaled_scores, dim=-1)
 
-# 최종 어텐션 출력: (9, 9) x (9, 64) -> (9, 64)
-# 각 토큰에 대해, 다른 토큰의 V 벡터들을 가중합한 결과
 attention_output = torch.matmul(attn_weights, V_head0)
 
 
-# -----------------------------
-# 5. 히트맵 시각화 함수
-# -----------------------------
 def plot_matrix(matrix, title, tokens_y=None, dim_x=64):
     plt.figure(figsize=(12, 4))
     if isinstance(matrix, torch.Tensor):
