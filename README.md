@@ -5,9 +5,9 @@
 
 ## Single head attention
  The Transformer concept has root on the paper `Attention is all you need`. They implemented the attention mechanism to NLP process and changed the game. Key idea is following:<br>
-$$
+$
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
-$$
+$
 
 
 
