@@ -1,13 +1,13 @@
 # Understanding Transformer
 
 ## To Start With
- The Transformer has revolutionized Natural Language Processing, ushering in dramatic changes not only in artificial intelligence but also in search engines, essay writing, and beyond. I've taken full advantage of this breakthrough—building GPT-2 from scratch and even attempting to pretrain BERT. Yet, a thought struck me: I know how to use these powerful tools, but I haven’t truly grasped the essence of artificial intelligence. That’s why I decided to visualize the core computations of the Transformer.
+ The Transformer has revolutionized Natural Language Processing, ushering in dramatic changes not only in artificial intelligence but also in search engines, essay writing, and beyond. I've taken full advantage of this breakthrough—building GPT-2 from scratch and even attempting to pretrain BERT. Yet, a thought struck me: I know how to use these powerful tools, but I haven’t truly grasped the essence of artificial intelligence. That’s why I decided to visualize the core computations of the Transformer. <br><br>
+
+ *NOTE : In this article, I am going to use the example sentence. **Aerodynamics are for people who can't build engines**.<br> Also, tokenizer is not accurate. This is just for example.
 
 ## Single head attention
- The Transformer concept has root on the paper `Attention is all you need`. They implemented the attention mechanism to NLP process and changed the game. Key idea is following:<br>
-$
-\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
-$
+![image](Images/single_attention.png) 
+Attention mechanism is calculated by Query, Key, Value. Q, K, V in this case is caculated by multipling input embedding X and Weight Q, Weight K, Weight V each. 
 
 
 
