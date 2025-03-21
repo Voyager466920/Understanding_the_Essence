@@ -6,12 +6,12 @@
  *NOTE : In this article, I am going to use the example sentence. **Aerodynamics are for people who can't build engines**.<br> Also, tokenizer is not accurate. This is just for example.
 
 ## Single head attention
-![image](Images/single_attention.png) 
+![image](Transformer_Visualize/Images/single_attention.png) 
 Attention mechanism is calculated by Query, Key, Value. Q, K, V in this case is caculated by multipling input embedding X and Weight Q, Weight K, Weight V each. 
 
 
 
-![image](Images/single_attention.png)
+![image](Transformer_Visualize/Images/single_attention.png)
 <br>
 Bert is a stack of Encoder Layer and GPT is a stack of Decoder layer. I knew how to make Encoder layer using Multihead-SelfAttention Layer and MultiLayer Perceptron but, not about Decoder layer. When I saw that image from `Attention is all you need`, I had a instinct that I can make the decoder layer. One thing added was Masked Multihead-SelfAttention layer. Before, let's talk about Tokenization and Preprocessing.<br>
 

@@ -3,7 +3,7 @@ import torch.nn as nn
 import matplotlib.pyplot as plt
 import numpy as np
 
-from SelfAttention import MultiHeadAttentionScratch
+from Transformer_Visualize.Code.SelfAttention import MultiHeadAttentionScratch
 
 tokens = ["Aero", "dynamics", "are", "for", "people", "who", "can", "\'t", "build", "engine"]
 input_tokens = tokens[:-1]    # ["Aero", "dynamics", "are", "for", "people", "who", "can", "'t", "build"]
