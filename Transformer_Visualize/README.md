@@ -24,5 +24,18 @@ These weights are interanlly decided in the process of training. Weights have th
 ![Query.png](Images%2FQuery.png)
 ![Key.png](Images%2FKey.png)
 ![Value.png](Images%2FValue.png) <br>
- So the upper image of showing relation between Query and Key is calculated by matrix multipling Q and K transpose, making (9 * 9) matrix.
+ So the image is showing relation between Query and Key is calculated by matrix multipling Q and K transpose, making (9 * 9) matrix.
+The square root of d_k is for scaling QK^T, calculated by dividing embedding dimension with number of heads (d_k = embedding dim / num heads). 
+So, (QK^T)/sqrt(d_k) is calculating the similarities between Q and K, showing the relationship. <br>
+After calculating (QK^T)/sqrt(d_k), softmax turns into probability. Masking is selective, based on task, which is added to ensure model not to cheat for true value.
+Then, the Value is multiplied. The Matrix multiplication of Softmax((QK^T)/sqrt(d_k)) and Value makes the model to understand context. As a result, it has a shpe of (9 * 64).<br>
 
+### Expanding to Multihead Attention
+In case of GPT2, model has 12 heads and 12 layers of Attention block. This looks like the following image. <br>
+![12_head_gather.png](Images%2F12_head_gather.png)
+<br>
+The resulting value of each attention head is a matrix of (9 * 768), this value is matrix multiplied with Weight_o. Weight_o has a shape of (embedding_dim, embedding_dim).
+Finally, Attention score is calculated as (9 * 768). This value is passed through layer normalization, residual connection to MLP. <br>
+Since Transformer model is a end-to-end model, W_q, W_k, W_v, W_o and other MLP weights are trained.<br>
+
+![GPT_heatmap.png](Images%2FGPT_heatmap.png)
