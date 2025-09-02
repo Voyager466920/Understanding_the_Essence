@@ -1,7 +1,7 @@
 # Understanding Latent Attention
 
 ## To Start With
- The Transformer has revolutionized Natural Language Processing, ushering in dramatic changes not only in artificial intelligence but also in search engines, essay writing, and beyond. I've taken full advantage of this breakthrough—building GPT-2 from scratch and even attempting to pretrain BERT. Yet, a thought struck me: I know how to use these powerful tools, but I haven’t truly grasped the essence of artificial intelligence. That’s why I decided to visualize the core computations of the Transformer. <br><br>
+ After the appearance of Transformer, bunch of 
 
  Note: In this article, I use the following example sentence: ***"Aerodynamics are for people who can't build engines."*** Also, note that the tokenizer is simplified for illustration purposes.
 
